@@ -6,7 +6,7 @@ description: Trigger a Nimbus job from an HTTP request instead of a cron schedul
 
 # Webhooks
 
-:::info Unreleased
+:::info[Unreleased]
 Webhooks are new in Nimbus **1.1**, which is not released yet. This page only
 exists in the **Next** version of the documentation. Switch the version
 dropdown in the navbar to **1.0** and this page disappears from the sidebar.

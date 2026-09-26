@@ -47,12 +47,12 @@ notify:
 | `concurrency` | no | `allow` | `allow`, `forbid` (skip if previous run still active) or `replace`. |
 | `notify` | no | | Targets for `on_failure`, `on_success`, `on_recovery`. |
 
-:::warning No shell, on purpose
+:::warning[No shell, on purpose]
 `command` is executed directly, not through `sh -c`. Pipes, globs and variable
 expansion do not work. Put such logic in a script and call the script.
 :::
 
-:::note Cron syntax
+:::note[Cron syntax]
 Nimbus uses the standard five fields: minute, hour, day of month, month, day of
 week. The shortcuts `@hourly`, `@daily`, `@weekly` and `@monthly` are accepted.
 :::

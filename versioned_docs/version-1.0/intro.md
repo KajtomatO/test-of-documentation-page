@@ -11,7 +11,7 @@ description: What Nimbus is and how this documentation is organised.
 files, Nimbus runs them on a schedule or on demand, retries them when they
 fail, and keeps a history of every run.
 
-:::info This is a proof of concept
+:::info[This is a proof of concept]
 Nimbus is a fictional product. This site exists to demonstrate a standalone
 documentation site built with Docusaurus and published to GitHub Pages by
 GitHub Actions. The documentation workflow is real; the software is not.
