@@ -1,0 +1,67 @@
+---
+sidebar_position: 1
+title: Installation
+description: Install the Nimbus scheduler with npm, Docker or a prebuilt binary.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Installation
+
+Nimbus ships as a single binary called `nimbusd` plus a command line client
+called `nimbus`. Pick whichever installation method fits your environment.
+
+:::tip Requirements
+Nimbus needs a writable data directory (default `~/.nimbus`) and outbound
+network access only if you use notifications. There is no database to install;
+run history is stored in an embedded SQLite file.
+:::
+
+<Tabs groupId="install-method">
+  <TabItem value="npm" label="npm" default>
+
+```bash
+npm install --global @nimbus/cli
+nimbus --version
+```
+
+  </TabItem>
+  <TabItem value="docker" label="Docker">
+
+```bash
+docker run --rm -it \
+  -v "$HOME/.nimbus:/data" \
+  -p 8484:8484 \
+  ghcr.io/example/nimbus:1.0
+```
+
+The container exposes the HTTP API and web UI on port `8484` and stores its
+state in the mounted `/data` volume.
+
+  </TabItem>
+  <TabItem value="binary" label="Binary">
+
+```bash
+curl -fsSL https://example.com/nimbus/1.0/nimbus-linux-amd64.tar.gz | tar -xz
+sudo install nimbus nimbusd /usr/local/bin/
+```
+
+Binaries are available for Linux (amd64, arm64) and macOS (arm64).
+
+  </TabItem>
+</Tabs>
+
+## Verify the installation
+
+```bash
+nimbus doctor
+```
+
+The command checks that the data directory is writable, that the scheduler
+daemon can bind its port and that the system clock is sane. All checks should
+print `ok`.
+
+## Next step
+
+Continue with the [Quickstart](./quickstart.md) to define and run a job.
