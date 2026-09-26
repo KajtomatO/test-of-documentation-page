@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Nimbus Docs',
-  tagline: 'Schedule it, retry it, see what happened.',
+  title: 'Test Docs',
+  tagline: 'Testing documentation generation - pleasse ignore ;-P.',
   favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
