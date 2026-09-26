@@ -39,7 +39,6 @@ flowchart LR
 | Control what happens when a job fails | [Retries and backoff](./guides/retries-and-backoff.md) |
 | Look up a command or config key | [CLI reference](./reference/cli.md), [Configuration](./reference/configuration.md) |
 | Automate Nimbus from another system | [HTTP API](./reference/http-api.md) |
-| Start a job from an HTTP request (new in 1.1) | [Webhooks](./guides/webhooks.md) |
 
 Links in these docs are written as relative file paths (for example
 `./guides/defining-jobs.md`). Docusaurus validates them at build time, so a

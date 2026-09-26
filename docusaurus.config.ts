@@ -61,6 +61,16 @@ const config: Config = {
           // resolves the right folder (docs/ or versioned_docs/) per version.
           editUrl:
             'https://github.com/KajtomatO/test-of-documentation-page/edit/main/',
+          // Versioning. `docs/` is the unreleased "Next" version, served at
+          // /docs/next/. Released snapshots live in versioned_docs/ and are
+          // listed in versions.json; the newest one is served at /docs/.
+          // Cutting a new version needs no change here, see CONTRIBUTING.md.
+          versions: {
+            current: {
+              label: 'Next 🚧',
+              banner: 'unreleased',
+            },
+          },
         },
         // This site has no blog.
         blog: false,
