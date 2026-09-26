@@ -100,7 +100,7 @@ description: Shown in search results and social previews.
 
 | Feature | Syntax | Example page |
 | --- | --- | --- |
-| Admonitions | `:::note`, `:::tip`, `:::info`, `:::warning`, `:::danger` … `:::` | `docs/guides/defining-jobs.md` |
+| Hints (admonitions) | `:::tip` … `:::`; with a title: `:::tip[Requirements]` … `:::`. The title **must** be in square brackets, `:::tip Requirements` renders as plain text | `docs/guides/defining-jobs.md` |
 | Code block title and line highlight | ```` ```yaml title="jobs/hello.yaml" {1,3} ```` | `docs/getting-started/quickstart.md` |
 | Tabs | `import Tabs from '@theme/Tabs'` in an `.mdx` file | `docs/getting-started/installation.mdx` |
 | Mermaid diagram | ```` ```mermaid ```` fenced block | `docs/guides/architecture.md` |
@@ -144,12 +144,47 @@ versions that readers still use.
 | Change | File |
 | --- | --- |
 | Title, tagline, navbar, footer, GitHub links | `docusaurus.config.ts` |
-| Colours and global CSS | `src/css/custom.css` |
+| Colours, fonts, spacing, component styling | `src/css/custom.css` |
+| Hint (admonition) markup | `src/theme/Admonition/Types.tsx` |
 | Landing page text and feature cards | `src/pages/index.tsx`, `src/components/HomepageFeatures/index.tsx` |
-| Logo, favicon, social card | `static/img/` |
+| Logo, favicon, social card | `static/img/` (`logo.svg`, `favicon.svg`) |
 | Search behaviour | the `@easyops-cn/docusaurus-search-local` entry in `docusaurus.config.ts` |
 
 Run `npm run typecheck` after editing TypeScript files; CI runs it too.
+
+## The theme
+
+The look is modelled on GitBook's default ("clean") theme: Inter for text,
+IBM Plex Mono for code, a purple accent, white surfaces, small corner radii,
+flat tinted hint boxes and bordered code blocks. It is implemented without a
+third-party theme, so upgrades of Docusaurus do not depend on anyone else.
+
+- **Colours** are 12-step scales named `--gb-tint-*` (neutral), `--gb-primary-*`
+  (accent) and `--gb-info/success/warning/danger-*` at the top of
+  `src/css/custom.css`, once for light mode and once under
+  `[data-theme='dark']`. To re-brand, change those values; everything else
+  refers to them. Infima variables (`--ifm-*`) are mapped onto the scales in
+  the next block, followed by per-component overrides.
+- **Fonts** are bundled from npm (`@fontsource-variable/inter`,
+  `@fontsource/ibm-plex-mono`) and loaded through `clientModules` in
+  `docusaurus.config.ts`. No request goes to Google Fonts at runtime. To swap a
+  font, install another `@fontsource` package, change the two `clientModules`
+  entries and the `--ifm-font-family-*` variables.
+- **Hints** are rendered by a swizzled component, `src/theme/Admonition/Types.tsx`,
+  which replaces Docusaurus's default admonition layout (uppercase title on
+  top) with an icon column and an optional bold title. The five types map to
+  the semantic colour scales. Because this file overrides a theme internal,
+  check it still compiles after a Docusaurus major upgrade (`npm run typecheck`).
+- **Code block backgrounds** are set in the `prism` section of
+  `docusaurus.config.ts`; token colours come from the stock `github` and
+  `dracula` Prism themes.
+- **Logo and favicon** are small inline SVGs in `static/img/`. Replace them with
+  your own; `favicon.svg` may also be swapped for a `.ico` or `.png` by changing
+  `favicon` in `docusaurus.config.ts`.
+
+There is no visual regression test. After changing the theme, look at the
+landing page, a docs page with a code block, a hint and a table, the version
+dropdown, and both colour modes.
 
 ## Upgrading dependencies
 

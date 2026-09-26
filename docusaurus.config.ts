@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Nimbus Docs',
   tagline: 'Schedule it, retry it, see what happened.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -30,6 +30,13 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  // Self-hosted web fonts (no request to Google Fonts at runtime).
+  // Referenced by --ifm-font-family-base / -monospace in src/css/custom.css.
+  clientModules: [
+    require.resolve('@fontsource-variable/inter'),
+    require.resolve('@fontsource/ibm-plex-mono'),
+  ],
 
   // Enable ```mermaid fenced code blocks in Markdown.
   markdown: {
@@ -111,7 +118,7 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Docs',
@@ -138,8 +145,16 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} KajtomatO. Nimbus is a fictional product. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      // Stock token colours, but code block backgrounds follow the site's
+      // neutral scale (see --gb-tint-2 in src/css/custom.css).
+      theme: {
+        ...prismThemes.github,
+        plain: {...prismThemes.github.plain, backgroundColor: '#faf9fb'},
+      },
+      darkTheme: {
+        ...prismThemes.dracula,
+        plain: {...prismThemes.dracula.plain, backgroundColor: '#232223'},
+      },
     },
   } satisfies Preset.ThemeConfig,
 };

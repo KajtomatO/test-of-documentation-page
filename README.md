@@ -13,7 +13,8 @@ made up; everything about how the site is written, built and published is real.
 
 - Landing page plus a **versioned** docs section (`1.0` released, `Next` unreleased).
 - Full-text **search** built into the static site, no external service.
-- **Mermaid** diagrams, tabs, admonitions and highlighted code blocks in Markdown.
+- **Mermaid** diagrams, tabs, hints and highlighted code blocks in Markdown.
+- A GitBook-inspired look (Inter, IBM Plex Mono, purple accent), implemented in one stylesheet with self-hosted fonts.
 - `deploy.yml`: build and publish on every push to `main`.
 - `test-deploy.yml`: build check on every pull request.
 

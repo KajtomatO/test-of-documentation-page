@@ -17,7 +17,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Every page is a plain Markdown file in the <code>docs/</code> folder.
-        Admonitions, tabs, code blocks and{' '}
+        Hints, tabs, code blocks and{' '}
         <Link to="/docs/guides/architecture">Mermaid diagrams</Link> work out
         of the box.
       </>
@@ -49,13 +49,13 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({title, Svg, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
+    <div className={clsx('col col--4', styles.col)}>
+      <div className={styles.card}>
         <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+        <Heading as="h3" className={styles.cardTitle}>
+          {title}
+        </Heading>
+        <p className={styles.cardText}>{description}</p>
       </div>
     </div>
   );
